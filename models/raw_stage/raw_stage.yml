@@ -1,0 +1,215 @@
+version: 2
+
+models:
+  - name: raw_inventory
+    description: Raw-stage view of inventory availability by part and supplier, enriched with supplier, part, nation, and region attributes.
+    columns:
+      - name: PARTKEY
+        description: Unique identifier for the part.
+        data_type: NUMBER
+      - name: SUPPLIERKEY
+        description: Unique identifier for the supplier.
+        data_type: NUMBER
+      - name: AVAILQTY
+        description: Available quantity of the part from the supplier.
+        data_type: NUMBER
+      - name: SUPPLYCOST
+        description: Supply cost charged by the supplier for the part.
+        data_type: NUMBER
+      - name: PART_SUPPLY_COMMENT
+        description: Free-text comment recorded on the part-supplier relationship.
+        data_type: VARCHAR
+      - name: SUPPLIER_NAME
+        description: Name of the supplier.
+        data_type: VARCHAR
+      - name: SUPPLIER_ADDRESS
+        description: Mailing address of the supplier.
+        data_type: VARCHAR
+      - name: SUPPLIER_NATION_KEY
+        description: Identifier for the supplier's nation.
+        data_type: NUMBER
+      - name: SUPPLIER_PHONE
+        description: Phone number of the supplier.
+        data_type: VARCHAR
+      - name: SUPPLIER_ACCTBAL
+        description: Current account balance of the supplier.
+        data_type: NUMBER
+      - name: SUPPLIER_COMMENT
+        description: Free-text comment recorded for the supplier.
+        data_type: VARCHAR
+      - name: PART_NAME
+        description: Name of the part.
+        data_type: VARCHAR
+      - name: PART_MFGR
+        description: Manufacturer of the part.
+        data_type: VARCHAR
+      - name: PART_BRAND
+        description: Brand of the part.
+        data_type: VARCHAR
+      - name: PART_TYPE
+        description: Type classification of the part.
+        data_type: VARCHAR
+      - name: PART_SIZE
+        description: Size specification of the part.
+        data_type: NUMBER
+      - name: PART_CONTAINER
+        description: Container type used for the part.
+        data_type: VARCHAR
+      - name: PART_RETAILPRICE
+        description: Retail price of the part.
+        data_type: NUMBER
+      - name: PART_COMMENT
+        description: Free-text comment recorded for the part.
+        data_type: VARCHAR
+      - name: SUPPLIER_NATION_NAME
+        description: Name of the supplier's nation.
+        data_type: VARCHAR
+      - name: SUPPLIER_NATION_COMMENT
+        description: Free-text comment recorded for the supplier's nation.
+        data_type: VARCHAR
+      - name: SUPPLIER_REGION_KEY
+        description: Identifier for the supplier's region.
+        data_type: NUMBER
+      - name: SUPPLIER_REGION_NAME
+        description: Name of the supplier's region.
+        data_type: VARCHAR
+      - name: SUPPLIER_REGION_COMMENT
+        description: Free-text comment recorded for the supplier's region.
+        data_type: VARCHAR
+
+  - name: raw_orders
+    description: Raw-stage view of orders joined to line items and enriched with customer geography and order attributes for the configured load date.
+    columns:
+      - name: ORDERKEY
+        description: Unique identifier for the order.
+        data_type: NUMBER
+      - name: PARTKEY
+        description: Unique identifier for the part on the order line.
+        data_type: NUMBER
+      - name: SUPPLIERKEY
+        description: Unique identifier for the supplier on the order line.
+        data_type: NUMBER
+      - name: LINENUMBER
+        description: Line number within the order.
+        data_type: NUMBER
+      - name: QUANTITY
+        description: Quantity ordered on the line item.
+        data_type: NUMBER
+      - name: EXTENDEDPRICE
+        description: Extended price for the line item before discounts and taxes.
+        data_type: NUMBER
+      - name: DISCOUNT
+        description: Discount applied to the line item.
+        data_type: NUMBER
+      - name: TAX
+        description: Tax applied to the line item.
+        data_type: NUMBER
+      - name: RETURNFLAG
+        description: Return status flag for the line item.
+        data_type: VARCHAR
+      - name: LINESTATUS
+        description: Current processing status of the line item.
+        data_type: VARCHAR
+      - name: SHIPDATE
+        description: Date the line item was shipped.
+        data_type: DATE
+      - name: COMMITDATE
+        description: Date the line item was committed for delivery.
+        data_type: DATE
+      - name: RECEIPTDATE
+        description: Date the line item was received.
+        data_type: DATE
+      - name: SHIPINSTRUCT
+        description: Shipping instructions for the line item.
+        data_type: VARCHAR
+      - name: SHIPMODE
+        description: Shipping mode used for the line item.
+        data_type: VARCHAR
+      - name: LINE_COMMENT
+        description: Free-text comment recorded on the line item.
+        data_type: VARCHAR
+      - name: CUSTOMERKEY
+        description: Unique identifier for the customer.
+        data_type: NUMBER
+      - name: ORDERSTATUS
+        description: Current status of the order.
+        data_type: VARCHAR
+      - name: TOTALPRICE
+        description: Total monetary value of the order.
+        data_type: NUMBER
+      - name: ORDERDATE
+        description: Date the order was placed.
+        data_type: DATE
+      - name: ORDERPRIORITY
+        description: Priority assigned to the order.
+        data_type: VARCHAR
+      - name: CLERK
+        description: Clerk responsible for the order.
+        data_type: VARCHAR
+      - name: SHIPPRIORITY
+        description: Shipping priority assigned to the order.
+        data_type: NUMBER
+      - name: ORDER_COMMENT
+        description: Free-text comment recorded on the order.
+        data_type: VARCHAR
+      - name: CUSTOMER_NAME
+        description: Name of the customer.
+        data_type: VARCHAR
+      - name: CUSTOMER_ADDRESS
+        description: Mailing address of the customer.
+        data_type: VARCHAR
+      - name: CUSTOMER_NATION_KEY
+        description: Identifier for the customer's nation.
+        data_type: NUMBER
+      - name: CUSTOMER_PHONE
+        description: Phone number of the customer.
+        data_type: VARCHAR
+      - name: CUSTOMER_ACCBAL
+        description: Current account balance of the customer.
+        data_type: NUMBER
+      - name: CUSTOMER_MKTSEGMENT
+        description: Market segment assigned to the customer.
+        data_type: VARCHAR
+      - name: CUSTOMER_COMMENT
+        description: Free-text comment recorded for the customer.
+        data_type: VARCHAR
+      - name: CUSTOMER_NATION_NAME
+        description: Name of the customer's nation.
+        data_type: VARCHAR
+      - name: CUSTOMER_REGION_KEY
+        description: Identifier for the customer's region.
+        data_type: NUMBER
+      - name: CUSTOMER_NATION_COMMENT
+        description: Free-text comment recorded for the customer's nation.
+        data_type: VARCHAR
+      - name: CUSTOMER_REGION_NAME
+        description: Name of the customer's region.
+        data_type: VARCHAR
+      - name: CUSTOMER_REGION_COMMENT
+        description: Free-text comment recorded for the customer's region.
+        data_type: VARCHAR
+
+  - name: raw_transactions
+    description: Raw-stage view of synthetic transactions derived from orders for the configured load date.
+    columns:
+      - name: ORDER_ID
+        description: Unique identifier for the source order.
+        data_type: NUMBER
+      - name: CUSTOMER_ID
+        description: Unique identifier for the source customer.
+        data_type: NUMBER
+      - name: ORDER_DATE
+        description: Date the source order was placed.
+        data_type: DATE
+      - name: TRANSACTION_DATE
+        description: Transaction date derived as 20 days after the order date.
+        data_type: DATE
+      - name: TRANSACTION_NUMBER
+        description: Derived transaction number built from order, customer, and order-date components.
+        data_type: NUMBER
+      - name: AMOUNT
+        description: Transaction amount sourced from the order total price.
+        data_type: NUMBER
+      - name: TYPE
+        description: Synthetic transaction type indicator with debit or credit values.
+        data_type: VARCHAR
